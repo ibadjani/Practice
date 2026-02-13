@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>I'm Sorry!</title>
+    <title>Sone ka Time!</title>
     <style>
         body {
             display: flex;
@@ -11,81 +11,87 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #ffe4e1;
-            font-family: 'Arial', sans-serif;
+            background-color: #0b1120; /* Dark night sky */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             text-align: center;
+            border: 2px solid #334155;
+            width: 320px;
         }
 
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            width: 350px;
-        }
+        h1 { font-size: 24px; margin-bottom: 10px; color: #fbbf24; }
+        p { font-size: 18px; color: #cbd5e1; margin-bottom: 30px; }
 
-        h1 { color: #ff4d6d; }
-        p { color: #555; }
-
-        .btn-group {
-            margin-top: 20px;
+        .btn-container {
             position: relative;
-            height: 100px;
+            height: 60px;
         }
 
         button {
-            padding: 10px 25px;
+            padding: 12px 25px;
             font-size: 16px;
-            border-radius: 10px;
+            font-weight: bold;
+            border-radius: 50px;
             border: none;
             cursor: pointer;
-            transition: 0.2s;
+            transition: transform 0.1s;
         }
 
-        #acceptBtn {
-            background-color: #4CAF50;
+        #stayUpBtn {
+            background-color: #ef4444;
             color: white;
             position: absolute;
-            left: 50px;
+            left: 10px;
         }
 
-        #declineBtn {
-            background-color: #ff4d6d;
+        #sleepBtn {
+            background-color: #10b981;
             color: white;
             position: absolute;
-            right: 50px;
+            right: 10px;
         }
+
+        .moon { font-size: 50px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>I am so sorry! 🥺</h1>
-    <p>Do you forgive me? Please say yes.</p>
+<div class="card">
+    <div class="moon">AYESHA</div>
+    <h1>Bohot Late Ho Gaya!</h1>
+    <p>Time late hai ab sojao shabas...</p>
     
-    <div class="btn-group">
-        <button id="acceptBtn">Accept</button>
-        <button id="declineBtn" onclick="alert('Yay! I knew you forgive me 😆')">Decline</button>
+    <div class="btn-container">
+        <button id="stayUpBtn">Nahi Sona!</button>
+        <button id="sleepBtn" onclick="goodnight()">Ok So Jate hon</button>
     </div>
 </div>
 
 <script>
-    const acceptBtn = document.getElementById('acceptBtn');
+    const stayUpBtn = document.getElementById('stayUpBtn');
 
-
-    acceptBtn.addEventListener('mouseover', () => {
-        const x = Math.random() * (window.innerWidth - acceptBtn.offsetWidth);
-        const y = Math.random() * (window.innerHeight - acceptBtn.offsetHeight);
+    // The "Funny" part: The button runs away
+    stayUpBtn.addEventListener('mouseover', () => {
+        const x = Math.random() * (window.innerWidth - stayUpBtn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - stayUpBtn.offsetHeight);
         
-        acceptBtn.style.left = x + 'px';
-        acceptBtn.style.top = y + 'px';
-        acceptBtn.style.position = 'fixed';
+        stayUpBtn.style.position = 'fixed';
+        stayUpBtn.style.left = x + 'px';
+        stayUpBtn.style.top = y + 'px';
     });
 
-
-    acceptBtn.onclick = () => {
-        alert("How did you catch me?! Fine, I guess you don't forgive me...");
-    };
+    function goodnight() {
+        alert("Shabas! SOJAO ");
+        window.close(); // Tries to close the tab
+    }
 </script>
 
 </body>
