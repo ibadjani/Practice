@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sorry </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #f2f2f2;
+        }
+
+        .box {
+            background: white;
+            padding: 40px;
+            width: 350px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .accept {
+            background-color: green;
+            color: white;
+        }
+
+        .not-accept {
+            background-color: red;
+            color: white;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Sorry Ayesha G 🥺</h2>
+    <p>Please accept my sorry...</p>
+
+  
+    <button class="accept" onclick="tryAgain()">Accept</button>
+
+  
+    <button class="not-accept" onclick="accepted()">Not Accept</button>
+
+    <div id="message"></div>
+</div>
+
+<script>
+    function tryAgain() {
+        document.getElementById("message").innerHTML = "Please TRY Again Or Click on Not Accepted";
+    }
+
+    function accepted() {
+        document.getElementById("message").innerHTML = "🎉 Accepted Successfully 😂";
+    }
+</script>
+
+</body>
+</html>
