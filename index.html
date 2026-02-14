@@ -1,80 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class 2026 Romance Report</title>
-    <style>
-        body {
-            background-color: #1a1a1a;
-            color: #ff4d6d;
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-        }
-        .container {
-            border: 2px solid #ff4d6d;
-            padding: 30px;
-            background: #2a2a2a;
-            box-shadow: 10px 10px 0px #ff4d6d;
-            max-width: 80%;
-        }
-        h1 { font-size: 1.5rem; text-transform: uppercase; }
-        .btn-group { margin-top: 30px; position: relative; height: 150px; }
-        button {
-            padding: 15px 25px;
-            font-weight: bold;
-            cursor: pointer;
-            border: 3px solid #ff4d6d;
-            background: transparent;
-            color: #ff4d6d;
-            margin: 10px;
-        }
-        button:hover { background: #ff4d6d; color: white; }
-        #noBtn { position: absolute; transition: 0.1s; }
-        #result { display: none; font-size: 1.2rem; color: #00ff00; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday in Advance Maima ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Comic Sans MS', cursive;
+    background: radial-gradient(circle, #ff758c, #ff7eb3);
+    overflow: hidden;
+    text-align: center;
+    color: white;
+}
+
+.container {
+    position: relative;
+    top: 10vh;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 45px;
+    animation: glow 2s infinite alternate;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    background: #ff0055;
+    color: white;
+    cursor: pointer;
+    margin: 8px;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: #ff0033;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px white; }
+    to { text-shadow: 0 0 30px yellow; }
+}
+
+/* Cake */
+.cake {
+    margin: 20px auto;
+    width: 150px;
+    height: 120px;
+    background: #ffb347;
+    border-radius: 10px;
+    position: relative;
+}
+.candle {
+    width: 10px;
+    height: 40px;
+    background: white;
+    position: absolute;
+    top: -40px;
+    left: 70px;
+}
+.flame {
+    width: 10px;
+    height: 15px;
+    background: yellow;
+    border-radius: 50%;
+    position: absolute;
+    top: -15px;
+    animation: flicker 0.2s infinite alternate;
+}
+@keyframes flicker {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(1.2); opacity: 0.7; }
+}
+
+/* Confetti */
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    animation: fall linear infinite;
+}
+@keyframes fall {
+    0% { transform: translateY(-100px); }
+    100% { transform: translateY(100vh); }
+}
+
+/* Fireworks Canvas */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+</style>
 </head>
+
 <body>
 
-    <div class="container" id="mainBox">
-        <h1>VALENTINE STATUS: FEBRUARY 14</h1>
-        <p>Select One of the Option Below</p>
-        <p><strong>Do you actually have a Valentine?</strong></p>
-        
-        <div class="btn-group">
-            <button id="yesBtn" onclick="showTruth()">YES, I 😊</button>
-            <button id="noBtn" onmouseover="runAway()">NO, SINGLE 😢</button>
+<canvas id="fireworks"></canvas>
+
+<div class="container">
+    <h1>🎉 HAPPY BIRTHDAY IN ADVANCE 🎉</h1>
+    <h2>MAIMA ❤️</h2>
+
+    <div class="cake">
+        <div class="candle">
+            <div class="flame"></div>
         </div>
     </div>
 
-    <div id="result">
-        <h1 style="font-size: 3rem;">❌ ERROR: CAP DETECTED</h1>
-        <p>Our database shows you are Single 😂</p>
-        <p>ZAAAAAAAAA 😂</p>
-        <button onclick="location.reload()">RECALCULATE (IF THIS IS WRONG )</button>
-    </div>
+    <h2 id="typing"></h2>
 
-    <script>
-        function runAway() {
-            const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
-        }
+    <button onclick="surprise()">🎁 Funny Surprise</button>
+    <button onclick="playMusic()">🎵 Play Music</button>
+</div>
 
-        function showTruth() {
-            document.getElementById('mainBox').style.display = 'none';
-            document.getElementById('result').style.display = 'block';
-            document.body.style.backgroundColor = "#000";
-        }
-    </script>
+<audio id="music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Typing Effect
+let text = "Love You Maima 😘 You are the Queen of Cuteness 👑 Stay happy";
+let i = 0;
+function typing() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 60);
+    }
+}
+typing();
+
+// Surprise
+function surprise() {
+    alert("🚨 ALERT 🚨\nMaima's Beauty Level: 1000% 🔥\nSystem Overloaded 😍\nHappy Birthday in Advance my sweety maima! 🎉");
+}
+
+// Music
+function playMusic() {
+    document.getElementById("music").play();
+}
+
+// Confetti Generator
+for (let i = 0; i < 120; i++) {
+    let confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.backgroundColor = 
+        "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+    confetti.style.animationDuration = 
+        (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(confetti);
+}
+
+// Fireworks
+let canvas = document.getElementById("fireworks");
+let ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function firework() {
+    let x = Math.random() * canvas.width;
+    let y = Math.random() * canvas.height / 2;
+    for (let i = 0; i < 50; i++) {
+        ctx.fillStyle = "hsl(" + Math.random() * 360 + ",100%,50%)";
+        ctx.beginPath();
+        ctx.arc(x + Math.random()*80-40, y + Math.random()*80-40, 3, 0, Math.PI*2);
+        ctx.fill();
+    }
+}
+setInterval(firework, 800);
+</script>
 
 </body>
 </html>
