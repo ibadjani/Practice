@@ -6,57 +6,79 @@
     <title>Happy Birthday Ayesha!</title>
     
     <style>
-    
+        /* CSS starts here */
+        
         body {
-
-            background-image: url('https://raw.githubusercontent.com/ibadjani/Practice/f4f6612901ba42deda95873822e5a3ef1764438d/IMG-20260215-WA0087.jpg'); 
-            background-size: cover; 
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            text-align: center;
+            /* Flexbox is magic! Yeh card ko screen ke bilkul center mein set karega */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Screen ki full height */
+            margin: 0;
+            background-color: #111; /* Dark background taake card pop-out kare */
             font-family: 'Arial', sans-serif;
-            margin-top: 100px;
         }
 
         .card {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 50px;
+            /* Yahan humne picture ko card ke andar daal diya hai! 
+               linear-gradient(rgba, rgba) white color ka ek transparent cover banata hai picture ke oopar */
+            background-image: 
+                linear-gradient(rgba(245, 245, 245, 0.85), rgba(245, 245, 245, 0.9)), 
+                url('https://raw.githubusercontent.com/ibadjani/Practice/f4f6612901ba42deda95873822e5a3ef1764438d/IMG-20260215-WA0087.jpg'); 
+            
+            background-size: cover; 
+            background-position: center;
+            
+            padding: 50px 30px;
             border-radius: 20px;
-            box-shadow: 0px 8px 20px rgba(0,0,0,0.5);
-            display: inline-block;
-            border: 4px solid #ff4d4d;
-            max-width: 80%;
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.8); /* Thora dark shadow professional look ke liye */
+            text-align: center;
+            border: 4px solid #ff4d6d;
+            
+            /* Mobile screen ke liye perfect sizing */
+            width: 90%;
+            max-width: 400px; 
         }
 
         h1 {
-            color: #d63384; 
-            font-size: 50px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px #ffb3b3;
+            color: #e83e8c; /* Beautiful pinkish-red */
+            font-size: 48px;
+            margin: 0 0 20px 0;
+            line-height: 1.1; /* Text lines ke darmiyan gap kam karne ke liye */
         }
 
-        p {
-            color: #333;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-    
-        button {
-            padding: 15px 30px;
+        p.subtitle {
+            color: #444;
             font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        p.message {
+            color: #333;
+            font-size: 22px;
+            letter-spacing: 1px;
+            text-transform: uppercase; /* Text ko capital letters mein convert karega */
+        }
+
+        /* Button Styling */
+        button {
+            padding: 15px 20px;
+            font-size: 18px;
             background-color: #ff4d4d;
             color: white;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 30px;
+            width: 80%; /* Button ko lamba karne ke liye */
+            box-shadow: 0px 5px 15px rgba(255, 77, 77, 0.4);
             transition: 0.3s; 
         }
 
         button:hover {
             background-color: #cc0000;
-            transform: scale(1.1); 
+            transform: scale(1.05); 
         }
 
     </style>
@@ -64,9 +86,10 @@
 <body>
 
     <div class="card">
-        <h1>Happy Birthday Ayesha </h1>
-        <p>You are the best sister ever</p>
-        <p>STAY HAPPY JUST THE WAY YOU ARE</p>
+        <h1>Happy<br>Birthday<br>Ayesha</h1>
+        
+        <p class="subtitle">You are the best sister ever</p>
+        <p class="message">Stay happy just<br>the way you are</p>
 
         <button id="musicBtn" onclick="toggleMusic()">🎵 Play Birthday Song</button>
     </div>
@@ -77,7 +100,7 @@
     </audio>
 
     <script>
-        
+        /* JavaScript - Music control logic */
         var isPlaying = false;
         var audio = document.getElementById("birthdayAudio");
         var btn = document.getElementById("musicBtn");
@@ -85,11 +108,11 @@
         function toggleMusic() {
             if (isPlaying) {
                 audio.pause();
-                btn.innerText = "🎵 Play Birthday Song";
+                btn.innerHTML = "🎵 Play Birthday Song";
                 isPlaying = false;
             } else {
                 audio.play();
-                btn.innerText = "Pause Song";
+                btn.innerHTML = "⏸️ Pause Song";
                 isPlaying = true;
             }
         }
