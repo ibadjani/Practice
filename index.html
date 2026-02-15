@@ -1,132 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Ayesha!</title>
-    
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; 
-            margin: 0;
-            background-color: #111; 
-            font-family: 'Arial', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Ayesha</title>
 
-        .card {
-            background-image: url('https://raw.githubusercontent.com/ibadjani/Practice/f4f6612901ba42deda95873822e5a3ef1764438d/IMG-20260215-WA0087.jpg'); 
-            background-size: cover; 
-            background-position: center;
-            border-radius: 20px;
-            box-shadow: 0px 10px 30px rgba(0,0,0,0.8); 
-            text-align: center;
-            border: 4px solid #ff4d6d;
-            
-            width: 90%;
-            max-width: 400px; 
-            height: 80vh; /* Card ko lamba (taller) kar diya hai */
-            
-            /* Flexbox layout taake elements ko control kiya ja sake */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 20px;
-        }
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-        h1 {
-            color: #ff66b2; /* Bright pink */
-            font-size: 34px; /* Font thora chota kiya taake ek line mein aaye */
-            margin: 0;
-            
-            /* YEH HAI WOH TRICK: Yeh header ko top par rakhega aur baaki sab ko neechay push karega */
-            margin-bottom: auto; 
-            
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.9); /* Dark shadow taake text clear ho */
-        }
+<style>
 
-        /* Neechay wale text aur button ko ek group mein daal diya */
-        .bottom-content {
-            width: 100%;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        p.subtitle {
-            color: #ffffff; /* Black se White kar diya */
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.9); /* Dark background shadow */
-        }
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:linear-gradient(135deg,#1a1a2e,#16213e);
+    font-family:'Poppins',sans-serif;
+}
 
-        p.message {
-            color: #ffffff; /* White color */
-            font-size: 18px;
-            letter-spacing: 1px;
-            text-transform: uppercase; 
-            margin-bottom: 25px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
-        }
+/* Card */
+.card{
+    position:relative;
+    width:90%;
+    max-width:420px;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,0.6);
+    text-align:center;
+    color:white;
+}
 
-        /* Button Styling */
-        button {
-            padding: 15px 20px;
-            font-size: 18px;
-            background-color: #ff4d4d;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            width: 85%; 
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.6); 
-            transition: 0.3s; 
-        }
+/* Background Image */
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:url('https://raw.githubusercontent.com/ibadjani/Practice/f4f6612901ba42deda95873822e5a3ef1764438d/IMG-20260215-WA0087.jpg');
+    background-size:cover;
+    background-position:center;
+    filter:brightness(0.6);
+    z-index:0;
+}
 
-        button:hover {
-            background-color: #cc0000;
-            transform: scale(1.05); 
-        }
+/* Content */
+.content{
+    position:relative;
+    z-index:1;
+    padding:60px 30px;
+}
 
-    </style>
+h1{
+    font-size:42px;
+    font-weight:700;
+    line-height:1.2;
+    margin-bottom:20px;
+    color:#ffb6c1;
+}
+
+.subtitle{
+    font-size:18px;
+    margin-bottom:15px;
+    font-weight:500;
+}
+
+.message{
+    font-size:20px;
+    font-weight:600;
+    margin-bottom:30px;
+    letter-spacing:1px;
+}
+
+/* Button */
+button{
+    padding:14px 25px;
+    font-size:16px;
+    background:linear-gradient(45deg,#ff4d6d,#ff758f);
+    border:none;
+    border-radius:50px;
+    color:white;
+    cursor:pointer;
+    transition:all 0.3s ease;
+    box-shadow:0 5px 15px rgba(255,77,109,0.5);
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(255,77,109,0.7);
+}
+
+</style>
 </head>
+
 <body>
 
-    <div class="card">
-        
-        <h1>Happy Birthday Ayesha</h1>
-        
-        <div class="bottom-content">
-            <p class="subtitle">You are the best sister ever</p>
-            <p class="message">Stay happy just<br>the way you are</p>
+<div class="card">
+    <div class="content">
+        <h1>Happy Birthday<br>Ayesha 🎂</h1>
+        <p class="subtitle">You are the best sister ever</p>
+        <p class="message">Stay happy just the way you are ✨</p>
 
-            <button id="musicBtn" onclick="toggleMusic()">🎵 Play Birthday Song</button>
-        </div>
-
+        <button id="musicBtn" onclick="toggleMusic()">🎵 Play Birthday Song</button>
     </div>
+</div>
 
-    <audio id="birthdayAudio" loop>
-        <source src="https://github.com/ibadjani/Practice/raw/refs/heads/main/Happy%20Birthday%20Song%20%E2%80%93%20Best%20Version%20Ever%20%F0%9F%8E%82(MP3_160K).mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+<audio id="birthdayAudio" loop>
+    <source src="https://github.com/ibadjani/Practice/raw/refs/heads/main/Happy%20Birthday%20Song%20%E2%80%93%20Best%20Version%20Ever%20%F0%9F%8E%82(MP3_160K).mp3" type="audio/mpeg">
+</audio>
 
-    <script>
-        var isPlaying = false;
-        var audio = document.getElementById("birthdayAudio");
-        var btn = document.getElementById("musicBtn");
+<script>
+let isPlaying = false;
+const audio = document.getElementById("birthdayAudio");
+const btn = document.getElementById("musicBtn");
 
-        function toggleMusic() {
-            if (isPlaying) {
-                audio.pause();
-                btn.innerHTML = "🎵 Play Birthday Song";
-                isPlaying = false;
-            } else {
-                audio.play();
-                btn.innerHTML = "⏸️ Pause Song";
-                isPlaying = true;
-            }
-        }
-    </script>
+function toggleMusic(){
+    if(isPlaying){
+        audio.pause();
+        btn.innerHTML="🎵 Play Birthday Song";
+    }else{
+        audio.play();
+        btn.innerHTML="⏸ Pause Song";
+    }
+    isPlaying=!isPlaying;
+}
+</script>
 
 </body>
 </html>
