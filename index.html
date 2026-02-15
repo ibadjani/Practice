@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Ayesha</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -20,20 +21,20 @@ body{
     justify-content:center;
     align-items:center;
     min-height:100vh;
-    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    background:linear-gradient(135deg,#1a1a2e,#16213e);
     font-family:'Poppins',sans-serif;
 }
 
 /* Card */
 .card{
     position:relative;
-    width:92%;
+    width:90%;
     max-width:420px;
-    height:650px;
-    border-radius:30px;
+    border-radius:25px;
     overflow:hidden;
-    box-shadow:0 25px 60px rgba(0,0,0,0.7);
-    animation:fadeIn 1.2s ease forwards;
+    box-shadow:0 15px 40px rgba(0,0,0,0.6);
+    text-align:center;
+    color:white;
 }
 
 /* Background Image */
@@ -41,128 +42,77 @@ body{
     content:"";
     position:absolute;
     inset:0;
-    background:url('https://raw.githubusercontent.com/ibadjani/Practice/f4f6612901ba42deda95873822e5a3ef1764438d/IMG-20260215-WA0087.jpg') center/cover no-repeat;
-    filter:brightness(0.75);
+    background-image:url('https://raw.githubusercontent.com/ibadjani/Practice/f4f6612901ba42deda95873822e5a3ef1764438d/IMG-20260215-WA0087.jpg');
+    background-size:cover;
+    background-position:center;
+    filter:brightness(0.6);
     z-index:0;
 }
 
-/* Gradient overlay (top darker for text clarity) */
-.card::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);
-    z-index:1;
-}
-
+/* Content */
 .content{
-    position:absolute;
-    inset:0;
-    z-index:2;
-    padding:40px 25px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    text-align:center;
-    color:white;
+    position:relative;
+    z-index:1;
+    padding:60px 30px;
 }
 
-/* Top Section (Birthday Text Above Head) */
-.top{
-    margin-top:20px;
-}
-
-h1{
-    font-size:38px;
-    font-weight:800;
+h2{
+    font-size:42px;
+    font-weight:700;
+    line-height:1.5;
+    margin-bottom:10px;
     color:#ffb6c1;
-    line-height:1.2;
-    text-shadow:0 4px 15px rgba(255,105,180,0.6);
-}
-
-/* Middle Section */
-.middle{
-    margin-top:120px;
 }
 
 .subtitle{
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(8px);
-    padding:10px 15px;
-    border-radius:15px;
-    font-size:16px;
+    font-size:18px;
     margin-bottom:15px;
+    font-weight:500;
 }
 
 .message{
     font-size:20px;
     font-weight:600;
+    margin-bottom:30px;
     letter-spacing:1px;
 }
 
 /* Button */
 button{
-    padding:15px 25px;
+    padding:14px 25px;
     font-size:16px;
+    background:linear-gradient(45deg,#ff4d6d,#ff758f);
     border:none;
     border-radius:50px;
-    background:linear-gradient(45deg,#ff4d6d,#ff758f);
     color:white;
     cursor:pointer;
-    transition:0.3s ease;
-    box-shadow:0 0 20px rgba(255,77,109,0.6);
+    transition:all 0.3s ease;
+    box-shadow:0 5px 15px rgba(255,77,109,0.5);
 }
 
 button:hover{
-    transform:translateY(-4px);
-    box-shadow:0 0 30px rgba(255,77,109,0.9);
-}
-
-/* Animation */
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(30px);}
-    to{opacity:1; transform:translateY(0);}
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(255,77,109,0.7);
 }
 
 </style>
 </head>
+
 <body>
 
 <div class="card">
     <div class="content">
+        <h2>Happy Birthday<br>Ayesha</h2>
+        <p class="subtitle">You are the best sister ever</p>
+        <p class="message">Stay happy just the way you are ✨</p>
 
-        <!-- TOP -->
-        <div class="top">
-            <h1>
-                Happy Birthday <br>
-                Ayesha 🎂
-            </h1>
-        </div>
-
-        <!-- MIDDLE -->
-        <div class="middle">
-            <div class="subtitle">
-                You are the best sister ever 💖
-            </div>
-            <div class="message">
-                Stay happy just the way you are ✨
-            </div>
-        </div>
-
-        <!-- BOTTOM -->
-        <div>
-            <button id="musicBtn" onclick="toggleMusic()">🎵 Play Birthday Song</button>
-        </div>
-
+        <button id="musicBtn" onclick="toggleMusic()">🎵 Play Birthday Song</button>
     </div>
 </div>
 
 <audio id="birthdayAudio" loop>
-<source src="https://github.com/ibadjani/Practice/raw/refs/heads/main/Happy%20Birthday%20Song%20%E2%80%93%20Best%20Version%20Ever%20%F0%9F%8E%82(MP3_160K).mp3" type="audio/mpeg">
+    <source src="https://github.com/ibadjani/Practice/raw/refs/heads/main/Happy%20Birthday%20Song%20%E2%80%93%20Best%20Version%20Ever%20%F0%9F%8E%82(MP3_160K).mp3" type="audio/mpeg">
 </audio>
-
-<!-- Confetti Library -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
 let isPlaying = false;
@@ -176,18 +126,8 @@ function toggleMusic(){
     }else{
         audio.play();
         btn.innerHTML="⏸ Pause Song";
-        launchConfetti();
     }
     isPlaying=!isPlaying;
-}
-
-/* Confetti effect */
-function launchConfetti(){
-    confetti({
-        particleCount:150,
-        spread:80,
-        origin:{y:0.6}
-    });
 }
 </script>
 
