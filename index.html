@@ -6,26 +6,20 @@
     <title>Happy Birthday Ayesha!</title>
     
     <style>
-        /* CSS starts here */
-        
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh; 
             margin: 0;
-            background-color: #111; /* Dark background for contrast */
+            background-color: #111; 
             font-family: 'Arial', sans-serif;
         }
 
         .card {
-            /* Maine yahan se white gradient hata diya hai. Ab sirf picture nazar aayegi. */
             background-image: url('https://raw.githubusercontent.com/ibadjani/Practice/f4f6612901ba42deda95873822e5a3ef1764438d/IMG-20260215-WA0087.jpg'); 
-            
             background-size: cover; 
             background-position: center;
-            
-            padding: 50px 30px;
             border-radius: 20px;
             box-shadow: 0px 10px 30px rgba(0,0,0,0.8); 
             text-align: center;
@@ -33,31 +27,46 @@
             
             width: 90%;
             max-width: 400px; 
+            height: 80vh; /* Card ko lamba (taller) kar diya hai */
+            
+            /* Flexbox layout taake elements ko control kiya ja sake */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
         }
 
         h1 {
-            color: #e83e8c; 
-            font-size: 48px;
-            margin: 0 0 20px 0;
-            line-height: 1.1;
-            /* Text ko clear karne ke liye thora shadow add kiya hai */
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #ff66b2; /* Bright pink */
+            font-size: 34px; /* Font thora chota kiya taake ek line mein aaye */
+            margin: 0;
+            
+            /* YEH HAI WOH TRICK: Yeh header ko top par rakhega aur baaki sab ko neechay push karega */
+            margin-bottom: auto; 
+            
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9); /* Dark shadow taake text clear ho */
+        }
+
+        /* Neechay wale text aur button ko ek group mein daal diya */
+        .bottom-content {
+            width: 100%;
         }
 
         p.subtitle {
-            color: #333; /* Text color thora dark kiya hai taake picture par nazar aaye */
+            color: #ffffff; /* Black se White kar diya */
             font-size: 20px;
             font-weight: bold;
-            margin-bottom: 20px;
-             text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9); /* Dark background shadow */
         }
 
         p.message {
-            color: #222;
-            font-size: 22px;
+            color: #ffffff; /* White color */
+            font-size: 18px;
             letter-spacing: 1px;
             text-transform: uppercase; 
-             text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
         }
 
         /* Button Styling */
@@ -69,9 +78,8 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            margin-top: 30px;
-            width: 80%; 
-            box-shadow: 0px 5px 15px rgba(255, 77, 77, 0.4);
+            width: 85%; 
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.6); 
             transition: 0.3s; 
         }
 
@@ -85,12 +93,16 @@
 <body>
 
     <div class="card">
-        <h1>Happy<br>Birthday<br>Ayesha</h1>
         
-        <p class="subtitle">You are the best sister ever</p>
-        <p class="message">Stay happy just<br>the way you are</p>
+        <h1>Happy Birthday Ayesha</h1>
+        
+        <div class="bottom-content">
+            <p class="subtitle">You are the best sister ever</p>
+            <p class="message">Stay happy just<br>the way you are</p>
 
-        <button id="musicBtn" onclick="toggleMusic()">🎵 Play Birthday Song</button>
+            <button id="musicBtn" onclick="toggleMusic()">🎵 Play Birthday Song</button>
+        </div>
+
     </div>
 
     <audio id="birthdayAudio" loop>
@@ -99,7 +111,6 @@
     </audio>
 
     <script>
-        /* JavaScript - Music control logic */
         var isPlaying = false;
         var audio = document.getElementById("birthdayAudio");
         var btn = document.getElementById("musicBtn");
