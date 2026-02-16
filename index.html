@@ -25,13 +25,15 @@ body{
     overflow:hidden;
 }
 
+/* Fireworks canvas */
 #fireworks{
     position:fixed;
     inset:0;
     z-index:0;
 }
 
-    .heart{
+/* Floating Hearts */
+.heart{
     position:fixed;
     bottom:-20px;
     font-size:20px;
@@ -41,10 +43,11 @@ body{
 }
 
 @keyframes floatHeart{
-    0%{transform:translateY(0) scale(1);}
-    100%{transform:translateY(-110vh) scale(1.5);}
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-110vh);}
 }
 
+/* Balloons */
 .balloon{
     position:fixed;
     bottom:-150px;
@@ -71,6 +74,7 @@ body{
     100%{transform:translateY(-120vh);}
 }
 
+/* Card */
 .card{
     position:relative;
     width:92%;
@@ -82,6 +86,7 @@ body{
     z-index:2;
 }
 
+/* Background Image */
 .card::before{
     content:"";
     position:absolute;
@@ -97,23 +102,35 @@ body{
     background:linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.4), rgba(0,0,0,0.7));
 }
 
+/* Content */
 .content{
     position:absolute;
     inset:0;
     padding:40px 25px;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
     text-align:center;
     color:white;
     z-index:3;
 }
 
+/* Heading Position */
 h1{
+    position:absolute;
+    top:70px;   /* CHANGE THIS to move heading */
+    left:50%;
+    transform:translateX(-50%);
     font-size:38px;
     font-weight:800;
     color:#ffb6c1;
     text-shadow:0 5px 20px rgba(255,105,180,0.7);
+}
+
+/* Middle Text */
+.text-area{
+    position:absolute;
+    top:250px;  /* CHANGE THIS to move middle text */
+    left:50%;
+    transform:translateX(-50%);
+    width:85%;
 }
 
 .subtitle{
@@ -121,7 +138,7 @@ h1{
     backdrop-filter:blur(10px);
     padding:10px 15px;
     border-radius:15px;
-    margin-bottom:10px;
+    margin-bottom:15px;
 }
 
 .message{
@@ -129,7 +146,12 @@ h1{
     font-weight:600;
 }
 
+/* Button Position */
 button{
+    position:absolute;
+    bottom:80px;   /* 🔥 CHANGE THIS to move button */
+    left:50%;
+    transform:translateX(-50%);
     padding:15px 25px;
     border:none;
     border-radius:50px;
@@ -137,12 +159,12 @@ button{
     color:white;
     font-size:16px;
     cursor:pointer;
-    transition:0.3s;
     box-shadow:0 0 25px rgba(255,77,109,0.7);
+    transition:0.3s;
 }
 
 button:hover{
-    transform:translateY(-4px);
+    transform:translateX(-50%) translateY(-4px);
 }
 
 </style>
@@ -153,18 +175,18 @@ button:hover{
 
 <div class="card">
     <div class="content">
-        <div>
-            <h1>Happy Birthday<br>Ayesha 🎂</h1>
-        </div>
 
-        <div>
+        <h1>Happy Birthday<br>Ayesha 🎂</h1>
+
+        <div class="text-area">
             <div class="subtitle">You are the best sister ever 💖</div>
             <div class="message">Stay happy just the way you are ✨</div>
         </div>
 
-        <div>
-            <button onclick="toggleMusic()" id="musicBtn">🎵 Play Birthday Song</button>
-        </div>
+        <button onclick="toggleMusic()" id="musicBtn">
+            🎵 Play Birthday Song
+        </button>
+
     </div>
 </div>
 
@@ -175,8 +197,6 @@ button:hover{
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
-
-/* Music + Confetti */
 let isPlaying=false;
 const audio=document.getElementById("birthdayAudio");
 const btn=document.getElementById("musicBtn");
@@ -192,54 +212,6 @@ function toggleMusic(){
     }
     isPlaying=!isPlaying;
 }
-
-for(let i=0;i<15;i++){
-    let heart=document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="💖";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.animationDuration=(5+Math.random()*5)+"s";
-    document.body.appendChild(heart);
-}
-
-for(let i=0;i<8;i++){
-    let balloon=document.createElement("div");
-    balloon.className="balloon";
-    balloon.style.left=Math.random()*100+"vw";
-    balloon.style.animationDuration=(8+Math.random()*5)+"s";
-    document.body.appendChild(balloon);
-}
-
-const canvas=document.getElementById("fireworks");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-function random(min,max){return Math.random()*(max-min)+min;}
-
-function firework(){
-    let x=random(100,canvas.width-100);
-    let y=random(100,canvas.height/2);
-    for(let i=0;i<50;i++){
-        let angle=Math.random()*2*Math.PI;
-        let speed=random(2,6);
-        let dx=Math.cos(angle)*speed;
-        let dy=Math.sin(angle)*speed;
-        let life=50;
-
-        let particle=setInterval(()=>{
-            ctx.fillStyle=`hsl(${random(0,360)},100%,60%)`;
-            ctx.fillRect(x,y,3,3);
-            x+=dx;
-            y+=dy;
-            life--;
-            if(life<=0) clearInterval(particle);
-        },20);
-    }
-}
-
-setInterval(firework,2000);
-
 </script>
 
 </body>
