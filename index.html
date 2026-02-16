@@ -20,14 +20,12 @@ body{
     overflow:hidden;
 }
 
-/* FIREWORKS CANVAS */
 #fireworks{
     position:fixed;
     inset:0;
     z-index:0;
 }
 
-/* 3D BALLOONS */
 .balloon{
     position:fixed;
     bottom:-150px;
@@ -56,7 +54,6 @@ body{
     100%{transform:translateY(-120vh) rotateY(360deg);}
 }
 
-/* CARD */
 .card{
     position:relative;
     width:92%;
@@ -90,11 +87,10 @@ body{
     color:white;
     z-index:3;
 }
-
-/* GLOWING NAME */
+    
 h1{
     position:absolute;
-    top:20px;
+    top:15px;
     left:50%;
     transform:translateX(-50%);
     font-size:40px;
@@ -111,7 +107,6 @@ h1{
     100%{background-position:300%}
 }
 
-/* TEXT AREA */
 .text-area{
     position:absolute;
     top:420px;
@@ -121,7 +116,6 @@ h1{
     font-weight:600;
 }
 
-/* BUTTON */
 button{
     position:absolute;
     bottom:70px;
@@ -164,7 +158,6 @@ Stay happy just the way you are ✨
 
 <script>
 
-/* AUTO BALLOONS */
 for(let i=0;i<8;i++){
     let b=document.createElement("div");
     b.className="balloon";
@@ -173,7 +166,6 @@ for(let i=0;i<8;i++){
     document.body.appendChild(b);
 }
 
-/* FIREWORKS WITH MUSIC SYNC */
 const canvas=document.getElementById("fireworks");
 const ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
