@@ -8,12 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
     display:flex;
@@ -25,7 +20,7 @@ body{
     overflow:hidden;
 }
 
-/* Fireworks canvas */
+/* Fireworks Canvas */
 #fireworks{
     position:fixed;
     inset:0;
@@ -36,15 +31,15 @@ body{
 .heart{
     position:fixed;
     bottom:-20px;
-    font-size:20px;
-    animation:floatHeart 8s linear infinite;
+    font-size:22px;
+    animation:floatHeart linear infinite;
     z-index:1;
-    opacity:0.7;
+    opacity:0.8;
 }
 
 @keyframes floatHeart{
-    0%{transform:translateY(0);}
-    100%{transform:translateY(-110vh);}
+    from{transform:translateY(0);}
+    to{transform:translateY(-110vh);}
 }
 
 /* Balloons */
@@ -55,7 +50,7 @@ body{
     height:55px;
     background:radial-gradient(circle at 30% 30%, #ff758f, #ff4d6d);
     border-radius:50%;
-    animation:floatBalloon 12s linear infinite;
+    animation:floatBalloon linear infinite;
     z-index:1;
 }
 
@@ -70,8 +65,8 @@ body{
 }
 
 @keyframes floatBalloon{
-    0%{transform:translateY(0);}
-    100%{transform:translateY(-120vh);}
+    from{transform:translateY(0);}
+    to{transform:translateY(-120vh);}
 }
 
 /* Card */
@@ -86,7 +81,6 @@ body{
     z-index:2;
 }
 
-/* Background Image */
 .card::before{
     content:"";
     position:absolute;
@@ -102,7 +96,6 @@ body{
     background:linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.4), rgba(0,0,0,0.7));
 }
 
-/* Content */
 .content{
     position:absolute;
     inset:0;
@@ -112,10 +105,10 @@ body{
     z-index:3;
 }
 
-/* Heading Position */
+/* Heading */
 h1{
     position:absolute;
-    top:15px;   /* CHANGE THIS to move heading */
+    top:15px;
     left:50%;
     transform:translateX(-50%);
     font-size:38px;
@@ -127,7 +120,7 @@ h1{
 /* Middle Text */
 .text-area{
     position:absolute;
-    top:400px;  /* CHANGE THIS to move middle text */
+    top:400px;
     left:50%;
     transform:translateX(-50%);
     width:85%;
@@ -146,10 +139,10 @@ h1{
     font-weight:600;
 }
 
-/* Button Position */
+/* Button */
 button{
     position:absolute;
-    bottom:60px;   /* 🔥 CHANGE THIS to move button */
+    bottom:60px;
     left:50%;
     transform:translateX(-50%);
     padding:15px 25px;
@@ -166,7 +159,6 @@ button{
 button:hover{
     transform:translateX(-50%) translateY(-4px);
 }
-
 </style>
 </head>
 <body>
@@ -174,29 +166,33 @@ button:hover{
 <canvas id="fireworks"></canvas>
 
 <div class="card">
-    <div class="content">
+<div class="content">
 
-        <h1>Happy Birthday<br>Ayesha 🎂</h1>
+<h1>Happy Birthday<br>Ayesha 🎂</h1>
 
-        <div class="text-area">
-            <div class="subtitle">You are the best sister ever 💖</div>
-            <div class="message">Stay happy just the way you are ✨</div>
-        </div>
+<div class="text-area">
+<div class="subtitle">You are the best sister ever 💖</div>
+<div class="message">Stay happy just the way you are ✨</div>
+</div>
 
-        <button onclick="toggleMusic()" id="musicBtn">
-            🎵 Play Birthday Song
-        </button>
+<button onclick="toggleMusic()" id="musicBtn">
+🎵 Play Birthday Song
+</button>
 
-    </div>
+</div>
 </div>
 
 <audio id="birthdayAudio" loop>
-<source src="https://github.com/ibadjani/Practice/raw/refs/heads/main/Happy%20Birthday%20Song%20%E2%80%93%20Best%20Version%20Ever%20%F0%9F%8E%82(MP3_160K).mp3" type="audio/mpeg">
+<source src="https://github.com/ibadjani/Practice/raw/refs/heads/main/Happy%20Birthday%20Song.mp3" type="audio/mpeg">
 </audio>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
+
+/* =========================
+   MUSIC + CONFETTI
+========================= */
 let isPlaying=false;
 const audio=document.getElementById("birthdayAudio");
 const btn=document.getElementById("musicBtn");
@@ -212,6 +208,74 @@ function toggleMusic(){
     }
     isPlaying=!isPlaying;
 }
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+for(let i=0;i<15;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(6+Math.random()*5)+"s";
+    document.body.appendChild(heart);
+}
+
+/* =========================
+   FLOATING BALLOONS
+========================= */
+for(let i=0;i<8;i++){
+    let balloon=document.createElement("div");
+    balloon.className="balloon";
+    balloon.style.left=Math.random()*100+"vw";
+    balloon.style.animationDuration=(10+Math.random()*6)+"s";
+    document.body.appendChild(balloon);
+}
+
+/* =========================
+   PROFESSIONAL FIREWORKS
+========================= */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+function createFirework(){
+    let x=Math.random()*canvas.width;
+    let y=Math.random()*canvas.height/2;
+    for(let i=0;i<80;i++){
+        particles.push({
+            x:x,
+            y:y,
+            angle:Math.random()*2*Math.PI,
+            speed:Math.random()*5+2,
+            life:80,
+            color:`hsl(${Math.random()*360},100%,60%)`
+        });
+    }
+}
+
+function animate(){
+    ctx.fillStyle="rgba(0,0,0,0.2)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    particles.forEach((p,index)=>{
+        p.x+=Math.cos(p.angle)*p.speed;
+        p.y+=Math.sin(p.angle)*p.speed;
+        p.life--;
+        ctx.fillStyle=p.color;
+        ctx.fillRect(p.x,p.y,3,3);
+        if(p.life<=0) particles.splice(index,1);
+    });
+
+    requestAnimationFrame(animate);
+}
+
+setInterval(createFirework,2000);
+animate();
+
 </script>
 
 </body>
