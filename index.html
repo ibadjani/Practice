@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Ayesha</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -15,42 +15,28 @@ body{
     justify-content:center;
     align-items:center;
     min-height:100vh;
-    background:#0f2027;
+    background:#000814;
     font-family:'Poppins',sans-serif;
     overflow:hidden;
 }
 
-/* Fireworks Canvas */
+/* FIREWORKS CANVAS */
 #fireworks{
     position:fixed;
     inset:0;
     z-index:0;
 }
 
-/* Floating Hearts */
-.heart{
-    position:fixed;
-    bottom:-20px;
-    font-size:22px;
-    animation:floatHeart linear infinite;
-    z-index:1;
-    opacity:0.8;
-}
-
-@keyframes floatHeart{
-    from{transform:translateY(0);}
-    to{transform:translateY(-110vh);}
-}
-
-/* Balloons */
+/* 3D BALLOONS */
 .balloon{
     position:fixed;
     bottom:-150px;
-    width:40px;
-    height:55px;
-    background:radial-gradient(circle at 30% 30%, #ff758f, #ff4d6d);
+    width:50px;
+    height:65px;
+    background:radial-gradient(circle at 30% 30%, #ff9ab5, #ff2e63);
     border-radius:50%;
     animation:floatBalloon linear infinite;
+    transform-style:preserve-3d;
     z-index:1;
 }
 
@@ -58,18 +44,19 @@ body{
     content:"";
     position:absolute;
     width:2px;
-    height:60px;
+    height:70px;
     background:white;
     left:50%;
-    top:55px;
+    top:65px;
 }
 
 @keyframes floatBalloon{
-    from{transform:translateY(0);}
-    to{transform:translateY(-120vh);}
+    0%{transform:translateY(0) rotateY(0deg);}
+    50%{transform:translateY(-60vh) rotateY(180deg);}
+    100%{transform:translateY(-120vh) rotateY(360deg);}
 }
 
-/* Card */
+/* CARD */
 .card{
     position:relative;
     width:92%;
@@ -77,7 +64,7 @@ body{
     height:650px;
     border-radius:30px;
     overflow:hidden;
-    box-shadow:0 25px 60px rgba(0,0,0,0.8);
+    box-shadow:0 25px 60px rgba(0,0,0,0.9);
     z-index:2;
 }
 
@@ -93,72 +80,63 @@ body{
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+    background:linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3), rgba(0,0,0,0.7));
 }
 
 .content{
     position:absolute;
     inset:0;
-    padding:40px 25px;
     text-align:center;
     color:white;
     z-index:3;
 }
 
-/* Heading */
+/* GLOWING NAME */
 h1{
     position:absolute;
-    top:15px;
+    top:20px;
     left:50%;
     transform:translateX(-50%);
-    font-size:38px;
-    font-weight:800;
-    color:#ffb6c1;
-    text-shadow:0 5px 20px rgba(255,105,180,0.7);
+    font-size:40px;
+    font-weight:900;
+    background:linear-gradient(45deg,#ff4d6d,#ffd166,#ff4d6d);
+    background-size:300%;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:glowText 4s linear infinite;
 }
 
-/* Middle Text */
+@keyframes glowText{
+    0%{background-position:0%}
+    100%{background-position:300%}
+}
+
+/* TEXT AREA */
 .text-area{
     position:absolute;
-    top:400px;
+    top:420px;
     left:50%;
     transform:translateX(-50%);
     width:85%;
-}
-
-.subtitle{
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(10px);
-    padding:10px 15px;
-    border-radius:15px;
-    margin-bottom:15px;
-}
-
-.message{
-    font-size:20px;
     font-weight:600;
 }
 
-/* Button */
+/* BUTTON */
 button{
     position:absolute;
-    bottom:60px;
+    bottom:70px;
     left:50%;
     transform:translateX(-50%);
     padding:15px 25px;
     border:none;
     border-radius:50px;
-    background:linear-gradient(45deg,#ff4d6d,#ff758f);
+    background:linear-gradient(45deg,#ff4d6d,#ff2e63);
     color:white;
     font-size:16px;
     cursor:pointer;
-    box-shadow:0 0 25px rgba(255,77,109,0.7);
-    transition:0.3s;
+    box-shadow:0 0 30px rgba(255,77,109,0.9);
 }
 
-button:hover{
-    transform:translateX(-50%) translateY(-4px);
-}
 </style>
 </head>
 <body>
@@ -171,109 +149,95 @@ button:hover{
 <h1>Happy Birthday<br>Ayesha 🎂</h1>
 
 <div class="text-area">
-<div class="subtitle">You are the best sister ever 💖</div>
-<div class="message">Stay happy just the way you are ✨</div>
+You are the best sister ever 💖 <br>
+Stay happy just the way you are ✨
 </div>
 
-<button onclick="toggleMusic()" id="musicBtn">
-🎵 Play Birthday Song
-</button>
+<button id="musicBtn">🎵 Celebration Started</button>
 
 </div>
 </div>
 
-<audio id="birthdayAudio" loop>
+<audio id="birthdayAudio" loop autoplay>
 <source src="https://github.com/ibadjani/Practice/raw/refs/heads/main/Happy%20Birthday%20Song.mp3" type="audio/mpeg">
 </audio>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
 <script>
 
-/* =========================
-   MUSIC + CONFETTI
-========================= */
-let isPlaying=false;
-const audio=document.getElementById("birthdayAudio");
-const btn=document.getElementById("musicBtn");
-
-function toggleMusic(){
-    if(isPlaying){
-        audio.pause();
-        btn.innerHTML="🎵 Play Birthday Song";
-    }else{
-        audio.play();
-        btn.innerHTML="⏸ Pause Song";
-        confetti({particleCount:200,spread:100});
-    }
-    isPlaying=!isPlaying;
-}
-
-/* =========================
-   FLOATING HEARTS
-========================= */
-for(let i=0;i<15;i++){
-    let heart=document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="💖";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.animationDuration=(6+Math.random()*5)+"s";
-    document.body.appendChild(heart);
-}
-
-/* =========================
-   FLOATING BALLOONS
-========================= */
+/* AUTO BALLOONS */
 for(let i=0;i<8;i++){
-    let balloon=document.createElement("div");
-    balloon.className="balloon";
-    balloon.style.left=Math.random()*100+"vw";
-    balloon.style.animationDuration=(10+Math.random()*6)+"s";
-    document.body.appendChild(balloon);
+    let b=document.createElement("div");
+    b.className="balloon";
+    b.style.left=Math.random()*100+"vw";
+    b.style.animationDuration=(10+Math.random()*6)+"s";
+    document.body.appendChild(b);
 }
 
-/* =========================
-   PROFESSIONAL FIREWORKS
-========================= */
+/* FIREWORKS WITH MUSIC SYNC */
 const canvas=document.getElementById("fireworks");
 const ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
+const audio=document.getElementById("birthdayAudio");
+const audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+const source=audioCtx.createMediaElementSource(audio);
+const analyser=audioCtx.createAnalyser();
+source.connect(analyser);
+analyser.connect(audioCtx.destination);
+
+analyser.fftSize=256;
+const bufferLength=analyser.frequencyBinCount;
+const dataArray=new Uint8Array(bufferLength);
+
 let particles=[];
 
-function createFirework(){
+function createFirework(power){
     let x=Math.random()*canvas.width;
     let y=Math.random()*canvas.height/2;
-    for(let i=0;i<80;i++){
+    for(let i=0;i<power;i++){
         particles.push({
             x:x,
             y:y,
             angle:Math.random()*2*Math.PI,
-            speed:Math.random()*5+2,
-            life:80,
+            speed:Math.random()*6+2,
+            life:100,
             color:`hsl(${Math.random()*360},100%,60%)`
         });
     }
 }
 
 function animate(){
-    ctx.fillStyle="rgba(0,0,0,0.2)";
+    requestAnimationFrame(animate);
+
+    ctx.globalCompositeOperation="destination-out";
+    ctx.fillStyle="rgba(0,0,0,0.15)";
     ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.globalCompositeOperation="lighter";
+
+    analyser.getByteFrequencyData(dataArray);
+    let avg=dataArray.reduce((a,b)=>a+b)/bufferLength;
+
+    if(avg>120){  // Beat detection
+        createFirework(100);
+    }
 
     particles.forEach((p,index)=>{
         p.x+=Math.cos(p.angle)*p.speed;
         p.y+=Math.sin(p.angle)*p.speed;
         p.life--;
         ctx.fillStyle=p.color;
-        ctx.fillRect(p.x,p.y,3,3);
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,3,0,Math.PI*2);
+        ctx.fill();
         if(p.life<=0) particles.splice(index,1);
     });
-
-    requestAnimationFrame(animate);
 }
 
-setInterval(createFirework,2000);
+audio.onplay=()=>{
+    audioCtx.resume();
+};
+
 animate();
 
 </script>
